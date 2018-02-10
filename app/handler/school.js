@@ -8,7 +8,7 @@ module.exports = {
         let schools;
         
         if (ctx.query.name) {
-            schools = await School.find({ 'name': { $regex: new Regex(`${ctx.query.name}`), $options: 'i' } }).exec();
+            schools = await School.find({ 'name': { $regex: new Regexp(`${ctx.query.name}`), $options: 'i' } }).exec();
         } else {
             schools = await School.find().exec();
         }
