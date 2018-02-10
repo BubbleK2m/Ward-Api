@@ -56,7 +56,7 @@ module.exports = {
             if (!school) ctx.throw(404);
 
             await User.update({ id }, { $pull: { schools: { "_id": schoolID } } });
-            return 200;
+            ctx.status = 200;
         }
     },
 
