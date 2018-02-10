@@ -17,12 +17,15 @@ const User = new Schema({
     email: String,
     phone: String,
 
-    schools: [School.schema],
+    schools: {
+        type: [School.schema],
+        default: []
+    },
 
-    ward: new Schema({
-        x: Number,
-        y: Number,
-    }),
+    ward: {
+        type: [Number],
+        default: [],
+    },
 });
 
 module.exports = mongoose.model('users', User);
