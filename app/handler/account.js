@@ -13,8 +13,8 @@ module.exports = {
     },
 
     register: async ctx => {
-        let { id, pw, name, phone, email } = ctx.request.body;
-        let user = new User({ id, pw, name, phone, email });
+        let { id, pw, name, phone, email, schools } = ctx.request.body;
+        let user = new User({ id, pw, name, phone, email, schools });
 
         await user.save();
         ctx.status = 201;
