@@ -49,12 +49,13 @@ module.exports = {
         },
 
         remove: async ctx => {
+            let { id } = ctx.user;
             let { schoolID } = ctx.request.body;
 
-            let school = await School.findById(ctx.params.id).exec();
+            let school = await School.findById(schoolID).exec();
             if (!school) ctx.throw(404);
 
-            await User.update({ id: ctx.user.id }, { $pull: { schools: { "_id": ctx.params.id } } });
+            await User.update({ id }, { $pull: { schools: { "_id": schoolID } } });
             return 200;
         }
     },
