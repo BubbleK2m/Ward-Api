@@ -7,6 +7,6 @@ const school = new Router();
 school.use(jwt());
 
 school.get('/school', School.find);
-school.get('/school/:id/user', School.user.find);
+school.get('/school/user', School.user.find);
 
 module.exports = school;
