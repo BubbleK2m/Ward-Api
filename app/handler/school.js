@@ -5,13 +5,9 @@ module.exports = {
     find: async ctx => {
         if (!ctx.user) ctx.throw(401);
 
-        let schools;
-        
-        if (ctx.query.name) {
-            schools = await School.find({ 'name': { $regex: new RegExp(`${ctx.query.name}`), $options: 'i' } }).exec();
-        } else {
-            schools = await School.find().exec();
-        }
+        const schools = ctx.query.name
+        ? await School.find({ 'name': { $regex: `${ctx.query.name}`, $options: 'i' } }).exec() 
+        : await School.find().exec()
 
         ctx.body = schools;
     },
