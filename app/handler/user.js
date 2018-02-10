@@ -34,7 +34,7 @@ module.exports = {
     school: {
         create: async ctx => {
             let { id } = ctx.user;
-            let { schoolID } = ctx.body;
+            let { schoolID } = ctx.request.body;
             
             let school = await School.findById(schoolID).exec();
             if (!school) ctx.throw(404);
