@@ -7,8 +7,6 @@ module.exports = {
 
         if (ctx.request.query.name) {
             users = await User.find({ name: { $regex: `${ctx.request.query.name}`, $options: 'i' } }).exec();
-        } else if (ctx.request.query.lng && ctx.request.query.lat && ctx.request.query.dis) {
-            users = await User.find({ ward: { $near: [ ctx.query.lat, ctx.query.lng ], $maxDistance: ctx.query.dis / 6378100 } });
         } else {
             users = await User.find().exec();
         }
