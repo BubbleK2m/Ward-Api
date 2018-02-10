@@ -6,7 +6,7 @@ module.exports = {
         let users;
 
         if (ctx.request.query.name) {
-            users = await User.find({ name: { $regex: `${ctx.request.query.name}`, $options: 'i' } }).exec();
+            users = await User.find({ 'name': { '$regex': `${ctx.request.query.name}`, '$options': 'i' } }).exec();
         } else {
             users = await User.find().exec();
         }

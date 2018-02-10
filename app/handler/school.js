@@ -7,8 +7,8 @@ module.exports = {
 
         let schools;
         
-        if (ctx.request.query.name) {
-            schools = await School.find({ $where: `this.name.includes("${ ctx.request.query.name }")` }).exec();
+        if (ctx.query.name) {
+            schools = await School.find({ 'name': { '$regex': `${ctx.query.name}` } }).exec();
         } else {
             schools = await School.find().exec();
         }
@@ -18,7 +18,7 @@ module.exports = {
     
     user: {
         find: async ctx => {
-            let { schoolID } = ctx.request.query;
+            let { schoolID } = ctx.query;
 
             let school = await School.findById(schoolID).exec();
             if (!school) ctx.throw(404);
