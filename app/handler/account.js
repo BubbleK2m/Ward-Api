@@ -17,6 +17,9 @@ module.exports = {
         let user = new User({ id, pw, sex, birthday, name, phone, email, schools });
 
         await user.save();
+        let accessToken = await jwt.encode({ id: user["_id"] }, { expiresIn: '7d' });
+        
         ctx.status = 201;
+        ctx.body = { accessToken };
     }
 }
