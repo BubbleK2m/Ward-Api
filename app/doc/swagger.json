@@ -281,14 +281,14 @@
             "required": true
           },
           {
-            "name": "lng",
+            "name": "lat",
             "description": "위도",
             "type": "string",
             "in": "query",
             "required": true
           },
           {
-            "name": "lat",
+            "name": "lng",
             "description": "경도",
             "type": "string",
             "in": "query",
