@@ -1,0 +1,26 @@
+{
+  "name": "ward-server",
+  "version": "1.0.0",
+  "description": "server for ward",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ward"
+  ],
+  "author": "donglyu",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^5.0.0",
+    "jsonwebtoken": "^8.1.1",
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.4.0",
+    "koa2-cors": "^2.0.5",
+    "mongoose": "^5.0.4"
+  }
+}
