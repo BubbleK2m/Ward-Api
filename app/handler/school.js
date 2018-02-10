@@ -23,7 +23,7 @@ module.exports = {
             let school = await School.findById(schoolID).exec();
             if (!school) ctx.throw(404);
 
-            let users = await User.find({ schools: { $elemMatch: { id: schoolID } } }).exec();
+            let users = await User.find({ schools: { $elemMatch: { "_id": schoolID } } }).exec();
             ctx.body = users;
         }
     }
