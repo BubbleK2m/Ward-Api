@@ -62,7 +62,7 @@ module.exports = {
     ward: {
         update: async ctx => {
             let { id } = ctx.user;
-            let { lat, lng } = ctx.body;
+            let { lat, lng } = ctx.request.body;
 
             await User.update({ id }, { ward: [ lat, lng ] });
             ctx.status = 200;
