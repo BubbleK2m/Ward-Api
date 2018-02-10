@@ -11,10 +11,7 @@ module.exports = {
             users = await User.find().exec();
         }
     
-        ctx.body = users.map(user => {
-            let { id, name, email, phone, ward, schools } = user;
-            return { id, name, email, phone, ward, schools };
-        });
+        ctx.body = users;
     },
 
     profile: {
