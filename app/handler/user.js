@@ -26,8 +26,8 @@ module.exports = {
         },
 
         update: async ctx => {
-            let { name, email, phone, ward } = ctx.data;
-            await user.update({ id }, { name, email, phone, ward });
+            let { name, email, phone } = ctx.data;
+            await user.update({ id }, { name, email, phone });
 
             ctx.status =  200;
         },

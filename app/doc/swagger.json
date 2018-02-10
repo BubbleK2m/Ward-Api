@@ -1,0 +1,497 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.",
+    "version": "1.0.0",
+    "title": "Swagger Petstore",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "apiteam@swagger.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "ward-api.com",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "계정",
+      "description": "계정 관련 api"
+    },
+    {
+      "name": "사용자",
+      "description": "사용자 관련 api"
+    },
+    {
+      "name": "학교",
+      "description": "학교 관련 api"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "계정"
+        ],
+        "summary": "로그인",
+        "description": "아이디, 비밀번호를 통해 엑세스 토큰 발급",
+        "responses": {
+          "200": {
+            "description": "로그인 성공, 엑세스 토큰 발급",
+            "examples": {
+              "application/json": {
+                "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhN2VkZGU4Y2I4MDkzMzQ4ODQ3MDIyOSIsImlhdCI6MTUxODI2OTI5NCwiZXhwIjoxNTE4ODc0MDk0fQ.r5_5vPzS3aa9UgGTR49xp9QyqkngCk8AjboOJjmeTUQ"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "tags": [
+          "계정"
+        ],
+        "summary": "회원가입",
+        "description": "새로운 회원 등록",
+        "parameters": [
+          {
+            "name": "id",
+            "description": "사용자의 아이디",
+            "type": "string",
+            "in": "query",
+            "required": true
+          },
+          {
+            "name": "pw",
+            "description": "사용자의 비밀번호",
+            "type": "string",
+            "in": "query",
+            "required": true
+          },
+          {
+            "name": "name",
+            "description": "사용자의 이름",
+            "type": "string",
+            "in": "query",
+            "required": true
+          },
+          {
+            "name": "email",
+            "description": "사용자의 이메일",
+            "type": "string",
+            "in": "query",
+            "required": true
+          },
+          {
+            "name": "phone",
+            "description": "사용자의 전화번호",
+            "type": "string",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "회원가입 완료"
+          }
+        }
+      }
+    },
+    "/user": {
+      "get": {
+        "tags": [
+          "사용자"
+        ],
+        "summary": "사용자 목록 조회",
+        "description": "사용자 목록 조회 및 이름, 위치를 이용한 사용자 검색",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "description": "사용자의 엑세스 토큰 (JWT)",
+            "type": "string",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "name",
+            "description": "사용자 이름 기반 검색을 위한 쿼리 파라미터 (사용자 이름)",
+            "type": "string",
+            "in": "query",
+            "required": true
+          },
+          {
+            "name": "lng",
+            "description": "위치 기반 검색을 위한 쿼리 파라미터 (경도)",
+            "type": "string",
+            "in": "query",
+            "required": true
+          },
+          {
+            "name": "lat",
+            "description": "위치 기반 검색을 위한 쿼리 파라미터 (경도)",
+            "type": "string",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "사용자 목록 조회 성공",
+            "examples": {
+              "application/json": [
+                {
+                  "id": "unko",
+                  "name": "unko",
+                  "email": "unko@gmail.com",
+                  "phone": "010-5055-4752",
+                  "ward": [
+                    30.154,
+                    127.1452
+                  ],
+                  "schools": {
+                    "_id": "5545sdfssfeddfdf",
+                    "name": "unko elementry school"
+                  }
+                },
+                {
+                  "id": "unko",
+                  "name": "unko",
+                  "email": "unko@gmail.com",
+                  "phone": "010-5055-4752",
+                  "ward": [
+                    30.154,
+                    127.1452
+                  ],
+                  "schools": {
+                    "_id": "5545sdfssfeddfdf",
+                    "name": "unko elementry school"
+                  }
+                }
+              ]
+            }
+          },
+          "401": {
+            "description": "JWT 토큰 오류"
+          }
+        }
+      }
+    },
+    "/user/profile": {
+      "get": {
+        "tags": [
+          "사용자"
+        ],
+        "summary": "사용자 프로필 조회",
+        "description": "사용자 자신의 프로필 조회",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "description": "사용자의 엑세스 토큰 (JWT)",
+            "type": "string",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "사용자 프로필 조회 성공",
+            "examples": {
+              "application/json": [
+                {
+                  "id": "unko",
+                  "name": "unko",
+                  "email": "unko@gmail.com",
+                  "phone": "010-5055-4752",
+                  "ward": [
+                    30.154,
+                    127.1452
+                  ],
+                  "schools": {
+                    "_id": "5545sdfssfeddfdf",
+                    "name": "unko elementry school"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "사용자"
+        ],
+        "summary": "사용자 프로필 수정",
+        "description": "사용자 자신의 프로필 수정",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "description": "사용자의 엑세스 토큰 (JWT)",
+            "type": "string",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "name",
+            "description": "사용자 이름",
+            "type": "string",
+            "in": "query",
+            "required": true
+          },
+          {
+            "name": "email",
+            "description": "사용자 이메일",
+            "type": "string",
+            "in": "query",
+            "required": true
+          },
+          {
+            "name": "phone",
+            "description": "사용자 전화번호",
+            "type": "string",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "사용자 프로필 수정 성공"
+          }
+        }
+      }
+    },
+    "/user/ward": {
+      "put": {
+        "tags": [
+          "사용자"
+        ],
+        "summary": "사용자 와드 변경",
+        "description": "사용자 자신의 와드 변경",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "description": "사용자의 엑세스 토큰 (JWT)",
+            "type": "string",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "lng",
+            "description": "위도",
+            "type": "string",
+            "in": "query",
+            "required": true
+          },
+          {
+            "name": "lat",
+            "description": "경도",
+            "type": "string",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "와드 변경 성공"
+          }
+        }
+      }
+    },
+    "/user/school": {
+      "post": {
+        "tags": [
+          "사용자"
+        ],
+        "summary": "소속 학교 등록",
+        "description": "학교의 소속 여부 등록",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "description": "사용자의 엑세스 토큰 (JWT)",
+            "type": "string",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "schoolID",
+            "description": "추가하고자 하는 학교의 object id(_id)",
+            "type": "string",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "소속 여부 등록 성공"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "사용자"
+        ],
+        "summary": "소속 학교 목록 조회",
+        "description": "사용자가 소속되어 있는 학교 목록 조회",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "description": "사용자의 엑세스 토큰 (JWT)",
+            "type": "string",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "학교 목록 조회 성공"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "사용자"
+        ],
+        "summary": "소속 학교 제거",
+        "description": "특정 학교의 소속 여부 삭제",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "description": "사용자의 엑세스 토큰 (JWT)",
+            "type": "string",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "schoolID",
+            "description": "삭제하고자 하는 학교의 object id(_id)",
+            "type": "string",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "소속 여부 삭제 성공"
+          }
+        }
+      }
+    },
+    "/school": {
+      "get": {
+        "tags": [
+          "학교"
+        ],
+        "summary": "학교 목록 조회",
+        "description": "이름, 위치를 이용한 학교 목록 조회",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "description": "사용자의 엑세스 토큰 (JWT)",
+            "type": "string",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "name",
+            "description": "학교 이름 기반 검색을 위한 쿼리 파라미터 (학교 이름)",
+            "type": "string",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "학교 목록 조회 성공",
+            "examples": {
+              "application/json": [
+                {
+                  "_id": "5545sdfssfeddfdf",
+                  "name": "unko elementry school"
+                },
+                {
+                  "_id": "647823sdf5478q85",
+                  "name": "unko middle school"
+                },
+                {
+                  "_id": "75sdf45786wer5df",
+                  "name": "unko high school"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/school/user": {
+      "get": {
+        "tags": [
+          "학교"
+        ],
+        "summary": "학교 소속 사용자 조회",
+        "description": "학교에 소속되어 있는 사용자 목록 조회",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "description": "사용자의 엑세스 토큰 (JWT)",
+            "type": "string",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "schoolID",
+            "description": "조회하고자 하는 학교의 object id (_id)",
+            "type": "string",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "사용자 목록 조회 성공",
+            "examples": {
+              "application/json": [
+                {
+                  "id": "unko",
+                  "name": "unko",
+                  "email": "unko@gmail.com",
+                  "phone": "010-5055-4752",
+                  "ward": [
+                    30.154,
+                    127.1452
+                  ],
+                  "schools": [
+                    {
+                      "_id": "a7sdf5sdf48q3z21",
+                      "name": "obaka univercity"
+                    }
+                  ]
+                },
+                {
+                  "id": "baka",
+                  "name": "o baka san",
+                  "email": "5baka@gmail.com",
+                  "phone": "010-4786-4447",
+                  "ward": [
+                    22.154,
+                    145.1452
+                  ],
+                  "schools": [
+                    {
+                      "_id": "a7sdf5sdf48q3z21",
+                      "name": "obaka univercity"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
