@@ -10,14 +10,31 @@ module.exports = {
         } else {
             users = await User.find().exec();
         }
-    
-        ctx.body = users;
+
+        ctx.body = users.map(user => {
+            let { id, name, ward } = user;
+            return { id, name, ward };
+        });
+    },
+
+    findOne: async ctx => {
+        let { id } = ctx.params;
+        let user = await User.findOne({ id }).exec();
+
+        if (!user) ctx.throw(404);
+        
+        delete user['pw'];
+        delete user['_id'];
+
+        ctx.body = user;
     },
 
     profile: {
         find: async ctx => {
-            const { id, name, email, phone, schools, ward } = ctx.user;
-            ctx.body = { id, name, email, phone, schools, ward };
+            delete ctx.user['_id'];
+            delete ctx.user['pw'];
+
+            ctx.body = user;
         },
 
         update: async ctx => {
