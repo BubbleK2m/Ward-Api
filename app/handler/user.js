@@ -38,9 +38,10 @@ module.exports = {
         },
 
         update: async ctx => {
+            let { id } = ctx.user;
             let { name, phone, birthday } = ctx.request.body;
+            
             await User.update({ id }, { name, phone, birthday });
-
             ctx.status =  200;
         },
     },
