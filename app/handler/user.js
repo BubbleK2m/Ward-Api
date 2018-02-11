@@ -23,6 +23,8 @@ module.exports = {
 
         if (!user) ctx.throw(404);
         
+        user.birthday = `${user.birthday.getFullYear()}년 ${user.birthday.getMonth()+ 1}월 ${user.birthday.getDate()}일`
+
         delete user['pw'];
         delete user['_id'];
 
