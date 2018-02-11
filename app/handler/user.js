@@ -34,7 +34,7 @@ module.exports = {
             delete ctx.user['_id'];
             delete ctx.user['pw'];
 
-            ctx.body = user;
+            ctx.body = ctx.user;
         },
 
         update: async ctx => {
