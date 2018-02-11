@@ -7,6 +7,7 @@ const user = new Router();
 user.use(jwt());
 
 user.get('/user', User.find);
+user.get('/user/{id}', User.findOne);
 user.get('/user/profile', User.profile.find);
 user.put('/user/profile', User.profile.update);
 user.put('/user/ward', User.ward.update);
