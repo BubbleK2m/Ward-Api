@@ -27,7 +27,6 @@ module.exports = {
         delete user['_id'];
 
         ctx.body = user;
-        ctx.body.birthday = `${user.birthday.getFullYear()}년 ${user.birthday.getMonth()+ 1}월 ${user.birthday.getDate()}일`
     },
 
     profile: {
@@ -36,7 +35,6 @@ module.exports = {
             delete ctx.user['pw'];
 
             ctx.body = ctx.user;
-            ctx.body.birthday = `${ctx.user.birthday.getFullYear()}년 ${ctx.user.birthday.getMonth()+ 1}월 ${ctx.user.birthday.getDate()}일`
         },
 
         update: async ctx => {
