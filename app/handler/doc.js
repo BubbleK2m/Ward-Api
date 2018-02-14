@@ -1,9 +1,9 @@
-const spec = require('../doc/spec');
+const swagger = require('../doc/swagger');
 
 module.exports = {
-    spec: {
+    swagger: {
         find: ctx => {
-            ctx.body = spec;
+            ctx.body = swagger;
         }
     }
 }
