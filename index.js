@@ -1,5 +1,3 @@
-import { setInterval } from 'timers';
-
 const dotenv = require('dotenv');
 dotenv.config();
 
