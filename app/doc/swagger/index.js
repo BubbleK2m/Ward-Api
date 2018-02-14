@@ -1,9 +1,14 @@
 const account = require('./account');
 const user = require('./user');
+const school = require('./school');
 
 const docs = [
-    account,
-    user
+    account.login,
+    account.register,
+    
+    user.find,
+    user.profile.find,
+    user.profile.update
 ];
 
 const swagger = {
@@ -51,16 +56,13 @@ const swagger = {
 };
 
 for(let doc of docs) {
-    for (let key of Object.keys(doc)) {
-        let spec = doc[key];
-        let { method, path } = spec;
-        
-        delete spec.method;
-        delete spec.path;
-        
-        if (!swagger.paths[path]) swagger.paths[path] = {}; 
-        swagger.paths[path][method] = spec;
-    }  
+    let { method, path } = doc;
+    
+    delete doc.method;
+    delete doc.path;
+    
+    if (!swagger.paths[path]) swagger.paths[path] = {}; 
+    swagger.paths[path][method] = doc;  
 }
 
 module.exports = swagger;
