@@ -22,6 +22,7 @@
     "koa-router": "^7.4.0",
     "koa-send": "^4.1.2",
     "koa2-cors": "^2.0.5",
-    "mongoose": "^5.0.4"
+    "mongoose": "^5.0.4",
+    "swagger-injector": "^4.0.0"
   }
 }
