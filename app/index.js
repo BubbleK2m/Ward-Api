@@ -9,7 +9,7 @@ const swagger = require('../lib/swagger');
 
 app.use(cors());
 app.use(body());
-app.use(swagger());
+// app.use(swagger());
 
 app.get(ctx => "hello, world!");
 
