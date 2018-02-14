@@ -7,5 +7,5 @@ const app = require('./app');
 
 app.listen(process.env.PORT, () => {
     console.log(`server was listening at ${process.env.PORT} port`);
-    console.log(os.hostname());
+    setInterval(() => http.get('https://ward-api.herokuapp.com'), 300000);
 });
