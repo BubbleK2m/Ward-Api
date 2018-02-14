@@ -2,15 +2,6 @@ const account = require('./account');
 const user = require('./user');
 const school = require('./school');
 
-const docs = [
-    account.login,
-    account.register,
-    
-    user.find,
-    user.profile.find,
-    user.profile.update
-];
-
 const swagger = {
     swagger: '2.0',
     
@@ -54,6 +45,17 @@ const swagger = {
 
     paths: {}
 };
+
+const docs = [
+    account.login,
+    account.register,
+    
+    user.find,
+    user.profile.find,
+    user.profile.update,
+
+    school.find
+];
 
 for(let doc of docs) {
     let { method, path } = doc;
