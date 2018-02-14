@@ -57,7 +57,8 @@ for(let doc of docs) {
         delete spec.method;
         delete spec.path;
         
-        swagger.paths[method][path] = spec;
+        if (!swagger.paths[path]) swagger.paths[path] = {}; 
+        swagger.paths[path][method] = spec;
     }  
 }
 
