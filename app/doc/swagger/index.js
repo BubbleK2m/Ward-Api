@@ -51,8 +51,8 @@ const swagger = {
 };
 
 for(let doc of docs) {
-    for (let name of Object.keys(doc)) {
-        let spec = doc[name];
+    for (let key of Object.keys(doc)) {
+        let spec = doc[key];
         let { method, path } = spec;
         
         delete spec.method;
