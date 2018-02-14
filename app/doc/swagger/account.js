@@ -7,20 +7,22 @@ module.exports = {
         ],
         summary: "로그인",
         description: "아이디, 비밀번호를 통해 엑세스 토큰 발급",
-        parameters: {
-            id: {
+        parameters: [
+            {
+                name: "id",
                 description: "사용자의 아이디",
                 type: "string",
                 in: "query",
                 required: true
             },
-            pw: {
+            {
+                name: "pw",
                 description: "사용자의 비밀번호",
                 type: "string",
                 in: "query",
                 required: true
             }
-		},
+        ],
         responses: {
             "200": {
                 description: "로그인 성공, 엑세스 토큰 발급",
