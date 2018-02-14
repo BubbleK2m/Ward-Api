@@ -51,7 +51,7 @@ const swagger = {
 };
 
 for(let doc of docs) {
-    for (let spec of doc) {
+    for (let spec in doc) {
         const { method, path } = spec;
         
         delete spec.method;
