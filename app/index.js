@@ -11,7 +11,7 @@ app.use(cors());
 app.use(body());
 // app.use(swagger());
 
-app.get(ctx => "hello, world!");
+app.get("/", ctx => "hello, world!");
 
 app.use(router.routes());
 app.use(router.allowedMethods());
