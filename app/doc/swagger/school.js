@@ -4,7 +4,7 @@ module.exports = {
         path: '/school',
 
         tags: [
-            '사용자'
+            '학교'
         ],
 
         parameters: [
